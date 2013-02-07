@@ -24,7 +24,7 @@ import time
 import commands
 
 #set 1 to show debug message
-debugmode=1
+debugmode=0
 
 
 #gpio database.
@@ -220,7 +220,8 @@ def unexportAllGPIO():
 Analog Functions
 """
 def setupAnalogInput():
-	cmd= "echo cape-bone-iio > /sys/devices/bone_capemgr.*/slots"
+	"""number will change your environment. please modify this number."""	
+	cmd= "sudo echo cape-bone-iio > /sys/devices/bone_capemgr.9/slots"
 	if debugmode:print cmd
 	os.system(cmd)
 
