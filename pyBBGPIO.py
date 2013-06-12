@@ -121,9 +121,8 @@ def exportPin(gpiono):
 	dirname='/sys/class/gpio/gpio%d' % pinno
 	if not os.path.isdir(dirname):
 		cmd= 'echo '+str(gpiono)+' > /sys/class/gpio/export'
-		#print cmd
+		if debugmode:print cmd
 		os.system(cmd)
-		
 
 def unexportPin(gpiono):
 	"""unexportPin(gpiono) unexports from sysfs."""
@@ -131,11 +130,11 @@ def unexportPin(gpiono):
 	if os.path.isdir(dirname):
 		pinno=int(gpiono)
 		cmd= 'echo '+str(gpiono)+' > /sys/class/gpio/unexport'
-		#print cmd
+		if debugmode:print cmd
 		os.system(cmd)
 
 
-def setGPIOWriteMode(gpiono):
+def setToGPIOWrite(gpiono):
 	"""set multiplex to gpio mode"""
 	cmd= 'echo 7 > /sys/kernel/debug/omap_mux/'+getMuxName(gpiono)
 	if debugmode:print cmd
@@ -151,12 +150,12 @@ def setGPIOReadMode(gpiono):
 	if debugmode:print cmd
 	os.system(cmd)
 
-def gpioOn(gpiono):
+def turnOnGPIO(gpiono):
 	cmd = 'echo 1 > '+getGPIOPath(gpiono)+'/value'
 	if debugmode:print cmd
 	os.system(cmd)
 
-def gpioOff(gpiono):
+def turnOffGPIO(gpiono):
 	cmd = 'echo 0 > '+getGPIOPath(gpiono)+'/value'
 	if debugmode:print cmd
 	os.system(cmd)
@@ -231,7 +230,7 @@ def delaySec(sec):
 
 
 def cleanup():
-	time.sleep(1)
+	unexportAllGPIO()
 
 
 def run(setup, main):
