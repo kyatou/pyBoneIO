@@ -4,7 +4,7 @@
  type 'sudo -s' before using this script.
 '''
 import time
-from pyBBGPIO import *
+from pyBoneIO import *
 
 def setup():
 	print "Blink user LEDs(LED2 and LED3). interval=1 sec"

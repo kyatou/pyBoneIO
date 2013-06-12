@@ -1,10 +1,10 @@
-#pybbgpio
+#pyBoneIO
 
-https://github.com/kyatou/pybbgpio.git
+https://github.com/kyatou/pyBoneIO.git
 
 GPIO utilities for BeagleBone.
 
-pybbgpio is a Python module for control GPIO pins on the BeagleBone.
+pyBoneIO is a Python module for control GPIO pins on the BeagleBone.
 This module tested with Ubuntu12.04 on beaglebone(Rev.A5).
 
 Some code based on PyBBIO by Alexander Hiam: 

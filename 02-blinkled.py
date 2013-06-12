@@ -3,12 +3,12 @@
  type 'sudo -s' before using this script.
 '''
 import time
-from pyBBGPIO import *
+from pyBoneIO import *
 
 def setup():
 	exportPin(39)
 	setToGPIOWrite(39)
-	print "Blink user LEDs(LED2 and LED3). interval=1 sec"
+	print "Blink LED interval=1 sec"
 	print "Ctrl+c to exit."
 
 def loop():
@@ -18,4 +18,3 @@ def loop():
 	delaySec(1)
 	
 run(setup,loop)
-
