@@ -21,8 +21,10 @@
 
 import os
 import time
+import commands
 
-debugmode=0
+#set 1 to show debug message
+debugmode=1
 
 
 #gpio database.
@@ -212,6 +214,38 @@ def unexportAllGPIO():
 	for rec in Bone_GPIO:
 		unexportPin(rec[0])
 
+
+
+"""
+Analog Functions
+"""
+def setupAnalogInput():
+	cmd= "echo cape-bone-iio > /sys/devices/bone_capemgr.*/slots"
+	if debugmode:print cmd
+	os.system(cmd)
+
+
+def readAnalogVoltagemV(ainNo):
+	fpath="/sys/module/bone_iio_helper/drivers/platform:bone-iio-helper/helper.14/AIN"
+	ainNo=int(ainNo)	
+	if(ainNo>7):
+		ainNo=7
+	if(ainNo<0):
+		ainNo=0	
+	devicefilepath=fpath+str(ainNo)
+	cmd=" cat "+ devicefilepath
+	#double reading to avoid cache data
+	val=commands.getoutput(cmd)
+	val=commands.getoutput(cmd)
+	return int(val)
+
+
+def readAllAnalogInputmV():
+	"""output all of analog input values"""	
+	values=[]
+	for ainNo in range(7):
+		values.append(readAnalogVoltagemV(ainNo))
+	return values
 
 """
 SLEEP functions
