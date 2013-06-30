@@ -3,7 +3,6 @@
  type 'sudo -s' before using this script.
 
  connect temperature sensor(lm35dz) output to ain0-ain6.
-
 '''
 import time
 from pyBoneIO import *
