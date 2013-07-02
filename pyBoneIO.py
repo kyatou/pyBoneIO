@@ -1,6 +1,5 @@
 '''
    Beaglebone GPIO manipulation utility.
-
    copyright Kouji Yatou <kouji.yatou@gmail.com>
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -134,23 +133,6 @@ def unexportPin(gpiono):
 		cmd= 'echo '+str(gpiono)+' > /sys/class/gpio/unexport'
 		if debugmode:print cmd
 		os.system(cmd)
-
-
-def setToGPIOWrite(gpiono):
-	"""set multiplex to gpio mode"""
-	cmd= 'echo 7 > /sys/kernel/debug/omap_mux/'+getMuxName(gpiono)
-	if debugmode:print cmd
-	os.system(cmd)
-	cmd= 'echo out > /sys/class/gpio/gpio'+str(gpiono)+'/direction'
-	if debugmode:print cmd
-	os.system(cmd)
-
-
-def setGPIOReadMode(gpiono):
-	"""set multiplex to gpio mode (readable)"""
-	cmd= 'echo 27 > /sys/kernel/debug/omap_mux/'+getMuxName(gpiono)
-	if debugmode:print cmd
-	os.system(cmd)
 
 def turnOnGPIO(gpiono):
 	cmd = 'echo 1 > '+getGPIOPath(gpiono)+'/value'
