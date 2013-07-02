@@ -9,7 +9,7 @@ from pyBoneIO import *
 
 def setup():
 	setupAnalogInput()
-	print "Blink LED interval=1 sec"
+	print "Read analog value interval=1 sec"
 	print "Ctrl+c to exit."
 
 def loop():
